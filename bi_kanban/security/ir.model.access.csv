@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kanban,kanban,model_kanban,base.group_user,1,1,1,1
+access_pipeline_stages,pipeline_stages,model_pipeline_stages,base.group_user,1,1,1,1

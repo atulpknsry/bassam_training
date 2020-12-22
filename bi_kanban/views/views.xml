@@ -1,0 +1,139 @@
+<odoo>
+  <data>
+    
+    <record id="kanban_view_tree" model="ir.ui.view">
+      <field name="name">kanban.view.tree</field>
+      <field name="model">kanban</field>
+      <field name="arch" type="xml">
+        <tree string="kanban">
+          <field name="name" />
+          <field name="age" />
+          <field name="value" />
+          <field name="market" />
+        </tree>
+      </field>
+    </record>
+
+    <record id="kanban_view_form" model="ir.ui.view">
+      <field name="name">kanban.view.form</field>
+      <field name="model">kanban</field>
+      <field name="arch" type="xml">
+        <form string="kanban">
+          <sheet>
+            <group>
+              <field name="name" />
+              <field name="age" />
+              <field name="value" />
+              <field name="market" />
+              <field name="stage_id" widget='selection'/>
+            </group>
+            <group>
+              <field name="image" widget="image"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="kanban_view_kanban" model="ir.ui.view">
+      <field name="name">kanban.view.kanban</field>
+      <field name="model">kanban</field>
+      <field name="arch" type="xml">
+        <kanban default_group_by="stage_id" class="o_kanban_small_column">
+          <field name="id" />
+          <field name="name" />
+          <field name="age" />
+          <field name="value" />
+          <field name="market" />
+          <field name="stage_id" widget='selection'/>
+          <progressbar field="market" colors='{"high":"success","low":"danger","good":"warning","dead":"muted"}' sum_field="value"/>
+          <templates>
+            <t t-name="kanban-box">
+              <div class="oe_kanban_global_click">
+                <div class="o_dropdown_kanban dropdown">
+                  <a class="dropdown-toggle o-no-caret btn" data-toggle="dropdown" role="menu" href="#">
+                    <span class="fa fa-ellipsis-v"/>
+                  </a>
+                  <div class="dropdown-menu" role="menu">
+                    <t t-if="widget.editable">
+                      <a role="menuitem" type="edit" class="dropdown-item">Edit</a>
+                    </t>
+                    <t t-if="widget.deletable">
+                      <a role="menuitem" type="delete" class="dropdown-item">Delete</a>
+                    </t>
+                  </div>  
+                </div>
+                <div class="oe_kanban_body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <div class="o_kanban_image">
+                        <img t-att-src="kanban_image('kanban','image',record.id.raw_value)" height="32" width="32"/>
+                      </div>
+                    </div>
+                    <div class="col-sm-8">
+                      <strong>
+                        <field name="name" />
+                      </strong>
+                      <div>
+                        <field name="age" />
+                        <div class="pull-right">
+                          <field name="value" />
+                        </div>
+                        <field name="market" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="oe_kanban_bottom">
+                  <field name="rating" widget="priority"/>
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <record id="kanban_action" model="ir.actions.act_window">
+      <field name="name">kanban</field>
+      <field name="res_model">kanban</field>
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <record id="pipeline_stages_view_tree" model="ir.ui.view">
+      <field name="name">pipeline.stages.view.tree</field>
+      <field name="model">pipeline.stages</field>
+      <field name="arch" type="xml">
+        <tree string="stages">
+          <field name="pipeline_stage" />
+        </tree>
+      </field>
+    </record>
+
+    <record id="pipiline_stages_action" model="ir.actions.act_window">
+      <field name="name">stages action</field>
+      <field name="res_model">pipeline.stages</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+      id="kanbanroot_menu"
+      name="kanbanroot"
+      sequence="10"/>
+
+    <menuitem
+      id="kanbansub_menu"
+      name="kanbansub"
+      action="kanban_action"
+      parent="kanbanroot_menu"
+      sequence="10"/>
+
+    <menuitem
+      id="stagesub_menu"
+      name="stagesub"
+      action="pipiline_stages_action"
+      parent="kanbanroot_menu"
+      sequence="10"/>
+
+  </data>
+</odoo>

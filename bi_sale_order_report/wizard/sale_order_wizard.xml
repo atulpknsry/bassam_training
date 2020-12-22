@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <record id="sale_order_wizard_view_form" model="ir.ui.view">
+            <field name="name">sale.order.wizard.view.form</field>
+            <field name="model">sale.order.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Report Date Range">
+                    <sheet>
+                        <group style="width:50%;">
+                            <field name="start_date" />
+                            <field name="end_date" />
+                            <field name="cust_id" />
+                        </group>
+                        <footer>
+                            <button string="Get Report" name="action_get_report" type="object" class="oe_highlight"/>
+                            <button string="Cancel" special="cancel"/>                           
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="sale_order_wizard_action" model="ir.actions.act_window">
+            <field name="name">SaleOrderWizardAction</field>
+            <field name="res_model">sale.order.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            id="sale_order_report_sub_menu"
+            name="Date Range Report"
+            action="sale_order_wizard_action"
+            parent="sale.menu_sale_report"
+            sequence="10"/>
+
+
+    </data>
+
+
+</odoo>

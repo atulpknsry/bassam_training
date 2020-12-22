@@ -1,0 +1,50 @@
+<odoo>
+  <data>
+    <!-- tree view -->
+    <record id="report_making_sample_data_view_tree" model="ir.ui.view">
+      <field name="name">report.making.sample.data.view.tree</field>
+      <field name="model">report.making.sample.data</field>
+      <field name="arch" type="xml">
+        <tree string="Report Making Sample Data">
+          <field name="name" />
+          <field name="roll_no" />          
+        </tree>
+      </field>
+    </record>
+    <!-- form view -->
+    <record id="report_making_sample_data_view_form" model="ir.ui.view">
+      <field name="name">report.making.sample.data.view.form</field>
+      <field name="model">report.making.sample.data</field>
+      <field name="arch" type="xml">
+        <form string="Report Making Sample Data">
+          <sheet>
+            <group>
+              <field name="name" />
+              <field name="roll_no" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!-- action -->
+    <record id="report_making_sample_data_action" model="ir.actions.act_window">
+      <field name="name">report.making.sample.data.action</field>
+      <field name="res_model">report.making.sample.data</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- menuitem root -->
+    <menuitem
+      id="report_making_sample_data_menu_root"
+      name="Report Making Sample Data"
+      sequence="10"/>
+
+    <!-- menuitem sub -->
+    <menuitem
+      id="report_making_sample_data_menu_sub"
+      name="Report Making Sample Data"
+      action="report_making_sample_data_action"
+      parent="report_making_sample_data_menu_root"
+      sequence="10"/>
+  </data>
+</odoo>

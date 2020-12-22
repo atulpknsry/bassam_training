@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="followup_wizard_view_form" model="ir.ui.view">
+            <field name="name">followup.wizard.view.form</field>
+            <field name="model">followup.wizard</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="date" />
+                            <field name="remarks" />
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Submit" name="submit_followup_remarks" type="object" class="oe_highlight"/>
+                        <button string="Cancel" special="cancel" class="oe_secondary"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="followup_wizard_action" model="ir.actions.act_window">
+            <field name="name">Follow Up</field>
+            <field name="res_model">followup.wizard</field>
+            <field name="view_mode">form</field>
+        </record>
+
+    </data>
+
+</odoo>

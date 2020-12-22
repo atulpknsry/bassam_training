@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report
+        id="action_report_excel"
+        model="sale.order"
+        string="Excel Report INV"
+        report_type="xlsx"
+        name="bi_xls_report_inv_paid.excel_report"
+        file="bi_xls_report_inv_paid.excel_report"
+    />
+
+</odoo>

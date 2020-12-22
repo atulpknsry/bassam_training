@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report
+        id="action_report_report_making_sample_data"
+        model="report.making.sample.data"
+        string="Report Sample"
+        report_type="qweb-pdf"
+        name="bi_report_making.report_making_template"
+        file="bi_report_making.report_making_template"
+    />
+
+    <template id="report_making_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <br/>
+                    <h1>Sample Data</h1>
+                    <table style="width:75%">
+                        <tr>
+                            <td>Name</td>
+                            <td>Roll Number</td>
+                        </tr>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <td><p t-field="doc.name" /></td>
+                                <td><p t-field="doc.roll_no" /></td>
+                            </tr>
+                        </t>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+
+
+</odoo>

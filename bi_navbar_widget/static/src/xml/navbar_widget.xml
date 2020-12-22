@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates>
+    <t t-name="icon">
+        <li>
+            <a class="dropdown-toggle o-no-caret" data-toggle="dropdown" title="Icon" href="#" role="button">
+                <i class="fa fa-id-badge"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" style="width: 100px; padding: 10px;" role="menu">
+                <div class="o_mail_systray_dropdown_items">
+                    <div class="o_mail_preview o_systray_activity">
+                        <span>List Item 1</span>
+                    </div>
+                </div>
+                <div class="o_mail_systray_dropdown_items">
+                    <div class="o_mail_preview o_systray_activity">
+                        <span>List Item 2</span>
+                    </div>
+                </div>                
+            </div>
+        </li>
+    </t>
+</templates>
