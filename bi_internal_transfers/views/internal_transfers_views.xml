@@ -7,7 +7,7 @@
       <field name="arch" type="xml">
         <tree string="">
           <field name="name" />
-          <field name="scheduled_date" />
+          <field name="create_date" />
           <field name="location_id" />
           <field name="location_dest_id" />
           <field name="state" />
@@ -44,8 +44,8 @@
                   <tree editable="bottom">
                     <field name="product_id"/>
                     <field name="product_uom_qty" />
-                    <field name="reserved_availability" />
-                    <field name="quantity_done" />
+                    <!-- <field name="reserved_availability" /> -->
+                    <!-- <field name="quantity_done" /> -->
                   </tree>
                 </field>                
               </page>
@@ -61,26 +61,31 @@
       <field name="view_mode">tree,form</field>
     </record>
 
-    <record id="internal_transfer_request_action" model="ir.actions.act_window">
+    <record id="internal_transfer_request_action" model="ir.actions.server">
       <field name="name">Requests</field>
-      <field name="res_model">internal.transfers</field>
-      <field name="view_mode">tree,form</field>
-      <field name="domain">[('state','in','draft')]</field>
+      <field name="model_id" ref="model_internal_transfers"/>
+      <field name="type">ir.actions.server</field>
+      <field name="state">code</field>
+      <field name="code">action = model.return_request()</field>
     </record>
 
-    <record id="internal_transfer_approve_action" model="ir.actions.act_window">
+
+    <record id="internal_transfer_approve_action" model="ir.actions.server">
       <field name="name">Approve</field>
-      <field name="res_model">internal.transfers</field>
-      <field name="view_mode">tree,form</field>
-      <field name="domain">[('state','in','confirmed')]</field>
+      <field name="model_id" ref="model_internal_transfers"/>
+      <field name="type">ir.actions.server</field>
+      <field name="state">code</field>
+      <field name="code">action = model.return_approve()</field>
     </record>
 
-    <record id="internal_transfer_delivery_action" model="ir.actions.act_window">
+    <record id="internal_transfer_delivery_action" model="ir.actions.server">
       <field name="name">Delivery</field>
-      <field name="res_model">internal.transfers</field>
-      <field name="view_mode">tree,form</field>
-      <field name="domain">[('state','in','assigned)]</field>
+      <field name="model_id" ref="model_internal_transfers"/>
+      <field name="type">ir.actions.server</field>
+      <field name="state">code</field>
+      <field name="code">action = model.return_delivery()</field>
     </record>
+
 
     <menuitem
       id="internal_transfers_root_menu"
@@ -90,21 +95,21 @@
 
     <menuitem
       id="internal_transfer_sub_request_menu"
-      name="Requests"
+      name="My Requests"
       action="internal_transfer_request_action"
       parent="internal_transfers_root_menu"
-      sequence="10"/>
+      sequence="9"/>
 
     <menuitem
       id="internal_transfer_sub_approve_menu"
-      name="Approve"
+      name="To Approve"
       action="internal_transfer_approve_action"
       parent="internal_transfers_root_menu"
       sequence="10"/>
 
     <menuitem
       id="internal_transfer_sub_delivery_menu"
-      name="Approve"
+      name="Get Delivery"
       action="internal_transfer_delivery_action"
       parent="internal_transfers_root_menu"
       sequence="10"/>
