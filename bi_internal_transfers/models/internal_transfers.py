@@ -13,7 +13,7 @@ class InternalTransfers(models.Model):
         ('assigned','Ready'),
         ('done','Done'),
     ], string='Status', default="draft")
-    scheduled_date = fields.Datetime(string='Scheduled Date', default=fields.datetime.now)
+    scheduled_date = fields.Datetime(string='Scheduled Date', required=True)
     location_id = fields.Many2one('stock.location', string='Source Location')
     location_dest_id = fields.Many2one('stock.location', string='Destination Location')
     move_lines = fields.One2many('stock.move', 'picking_id', string='Stock Moves')
@@ -141,7 +141,11 @@ class InternalTransfers(models.Model):
                 move_line_obj = self.env['stock.move.line']
                 self.move_line_id = move_line_obj.create(move_line_vals)
             rec.picking_id.action_assign()
-            self.env['stock.immediate.transfer'].create({'pick_ids': [(4, rec.picking_id.id)]}).process()    
+            self.env['stock.immediate.transfer'].create({'pick_ids': [(4, rec.picking_id.id)]}).process()
+            quant = self.env['stock.quant'].search([])
+            for rec in quant:
+                qty = rec.quantity
+                rec.sudo().write({'reserved_quantity':qty})    
         self.state = 'done'
 
     def return_request(self):
