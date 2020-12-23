@@ -28,173 +28,192 @@
         paperformat="bi_car_request_form.paperformat_alraffd"
     />
 
+
+    <template id="report_layout_template">
+        <div class="header">
+        </div>
+
+        <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-raw="0"/>
+        </div>
+
+        <div class="footer ">
+        </div>
+
+    </template>
+
     <template id="template_report_car_request_form">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
-                <div class="page" style="margin:5%;font-size:small;">
-                    <div>
-                        <p style="font-size:24pt;font-weight:bold;text-align:center;padding:0;margin:0;">استمارة طلب سيارة<br/>Car Request Form</p>
+                <t t-call="bi_car_request_form.report_layout_template">
+                    <div class="page" style="margin:5%;font-size:small;">
+                        <div>
+                            <p style="font-size:24pt;font-weight:bold;text-align:center;padding:0;margin:0;">استمارة طلب سيارة<br/>Car Request Form</p>
+                        </div>
+                        <div style="float:left; width:30%">
+                            <div style="margin:auto">
+                                <img src="/bi_car_request_form/static/src/img/car.png"  style="display:block;margin-left:auto;margin-right:auto;width:50%" alt="car image" height="112px"/>
+                            </div>
+                            <div style="border-style: solid;">
+                                <p style="font-size:18pt;font-weight:bold;text-align:center;padding:0;margin:0;">Car Details<br/>بيانات السيارة</p>
+                            </div>
+                            <div>
+                                <table style="width:100%">
+                                    <tr>
+                                        <td bgcolor="#dbfffd">Car Type:</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">نوع السيارة:</td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#dbfffd">Brand:</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">الماركة:</td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#dbfffd">Build Year:</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">سنة الصنع</td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#dbfffd">Plate No:</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">لوحة السيارة:</td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#dbfffd">Chassis No:</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">رقم الشاسيه .:</td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#dbfffd">Duration needed: From:</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">المدة المطلوبة: من:</td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#dbfffd">Duration needed: To:</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">المدة المطلوبة: إلى:</td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#dbfffd">During working hours/Beyond working hours:</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">خلال ساعات العمل / بعد ساعات العمل</td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#dbfffd">Duration in days/hours:</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">المدة بالأيام / ساعات</td>
+                                    </tr>                        
+                                </table>
+                            </div>
+                            <div style="height:1%"/>                  
+                            <div style="border-style: solid;">
+                                <p style="font-size:18pt;font-weight:bold;text-align:center;padding:0;margin:0;">Car Condition when returned<br/>حالة السيارة عند التسليم</p>
+                            </div>
+                            <div style="height:1%"/>
+                            <div>
+                                <table style="width:384px">
+                                    <tr>
+                                        <td style="height:96px;width:96px;border:solid #8ae342;border-radius:64px;text-align:center;">Not Clean<br/>غير نظيفة : </td>
+                                        <td style="height:96px;width:96px;border:solid #8ae342;border-radius:64px;text-align:center;">Clean<br/> نظيفة : </td>
+                                        <td style="height:96px;width:96px;border:solid #8ae342;border-radius:64px;text-align:center;">Scratched<br/> خدوش : </td>
+                                        <td style="height:96px;width:96px;border:solid #8ae342;border-radius:64px;text-align:center;">Excellent<br/> ممتازة: </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div style="height:1%"/>
+                            <div style="border-style: solid;">
+                                <p style="font-size:18pt;font-weight:bold;text-align:center;padding:0;margin:0;">Fleet Car Workshop<br/>ورشة السيارات</p>
+                            </div>                 
+                            <div style="height:1%"/>
+                            <div>
+                                <table style="width:100%">
+                                    <tr>
+                                        <td bgcolor="#dbfffd" >Car Supervisor  Name:</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">اسم المشرف:</td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#dbfffd" >Car Supervisor  signature:</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">توقيع المشرف المستلم:</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>            
+                        <div style="float:right; width:30%">
+                            <div style="border-style: solid;">
+                                <p style="font-size:18pt;font-weight:bold;text-align:center;padding:0;margin:0;">Personal Details<br/>البيانات الشخصية</p>
+                            </div>
+                            <div>
+                                <table style="width:100%">
+                                    <tr>
+                                        <td bgcolor="#dbfffd" style="width:33%">Name of employee :</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">اسم الموظف : </td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#dbfffd" style="width:33%">Employee No.:</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">الرقم الوظيفي:</td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#dbfffd" style="width:33%">Job Title:</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;"> المنصب الوظيفي:</td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#dbfffd" style="width:33%">Work Place:</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">مقر العمل</td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#dbfffd" style="width:33%">Unit</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">الوحدة:</td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#dbfffd" style="width:33%">Department</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">الادارة:</td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#dbfffd" style="width:33%">Division</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">القسم:</td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#dbfffd" style="width:33%">Work Phone No.</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">هاتف العمل:</td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#dbfffd" style="width:33%">Mobile Phone No.:</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">الهاتف الجوال:</td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#dbfffd" style="width:33%">Email</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">البريد الالكتروني:</td>
+                                    </tr>                                 
+                                </table>
+                            </div>
+                            <div style="height:10%"/>
+                            <div style="border-style: solid;">
+                                <p style="font-size:18pt;font-weight:bold;text-align:center;padding:0;margin:0;">Car Condition when received<br/>حالة السيارة عند الاستلام</p>
+                            </div>
+                            <div style="height:2%"/>
+                            <div>
+                                <table style="width:384px">
+                                    <tr>
+                                        <td style="height:96px;width:96px;border:solid #8ae342;border-radius:64px;text-align:center;">Not Clean<br/>غير نظيفة : </td>
+                                        <td style="height:96px;width:96px;border:solid #8ae342;border-radius:64px;text-align:center;">Clean<br/> نظيفة : </td>
+                                        <td style="height:96px;width:96px;border:solid #8ae342;border-radius:64px;text-align:center;">Scratched<br/> خدوش : </td>
+                                        <td style="height:96px;width:96px;border:solid #8ae342;border-radius:64px;text-align:center;">Excellent<br/> ممتازة: </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div style="height:10%"/>
+                            <div>
+                                <table style="width:100%">
+                                    <tr>
+                                        <td bgcolor="#dbfffd" >Receiver Name:</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">اسم المستلم:</td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#dbfffd" >Receiver signature:</td>
+                                        <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">توقيع المستلم:</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>      
                     </div>
-                    <div style="float:left; width:30%">
-                        <div style="margin:auto">
-                            <img src="/bi_car_request_form/static/src/img/car.png"  style="display:block;margin-left:auto;margin-right:auto;width:50%" alt="car image" height="112px"/>
-                        </div>
-                        <div style="border-style: solid;">
-                            <p style="font-size:18pt;font-weight:bold;text-align:center;padding:0;margin:0;">Car Details<br/>بيانات السيارة</p>
-                        </div>
-                        <div>
-                            <table style="width:100%">
-                                <tr>
-                                    <td bgcolor="#dbfffd">Car Type:</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">نوع السيارة:</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#dbfffd">Brand:</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">الماركة:</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#dbfffd">Build Year:</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">سنة الصنع</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#dbfffd">Plate No:</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">لوحة السيارة:</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#dbfffd">Chassis No:</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">رقم الشاسيه .:</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#dbfffd">Duration needed: From:</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">المدة المطلوبة: من:</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#dbfffd">Duration needed: To:</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">المدة المطلوبة: إلى:</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#dbfffd">During working hours/Beyond working hours:</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">خلال ساعات العمل / بعد ساعات العمل</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#dbfffd">Duration in days/hours:</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">المدة بالأيام / ساعات</td>
-                                </tr>                        
-                            </table>
-                        </div>
-                        <div style="height:1%"/>                  
-                        <div style="border-style: solid;">
-                            <p style="font-size:18pt;font-weight:bold;text-align:center;padding:0;margin:0;">Car Condition when returned<br/>حالة السيارة عند التسليم</p>
-                        </div>
-                        <div style="height:1%"/>
-                        <div>
-                            <table style="width:384px">
-                                <tr>
-                                    <td style="height:96px;width:96px;border:solid #8ae342;border-radius:64px;text-align:center;">Not Clean<br/>غير نظيفة : </td>
-                                    <td style="height:96px;width:96px;border:solid #8ae342;border-radius:64px;text-align:center;">Clean<br/> نظيفة : </td>
-                                    <td style="height:96px;width:96px;border:solid #8ae342;border-radius:64px;text-align:center;">Scratched<br/> خدوش : </td>
-                                    <td style="height:96px;width:96px;border:solid #8ae342;border-radius:64px;text-align:center;">Excellent<br/> ممتازة: </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div style="height:1%"/>
-                        <div style="border-style: solid;">
-                            <p style="font-size:18pt;font-weight:bold;text-align:center;padding:0;margin:0;">Fleet Car Workshop<br/>ورشة السيارات</p>
-                        </div>                 
-                        <div style="height:1%"/>
-                        <div>
-                            <table style="width:100%">
-                                <tr>
-                                    <td bgcolor="#dbfffd" >Car Supervisor  Name:</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">اسم المشرف:</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#dbfffd" >Car Supervisor  signature:</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">توقيع المشرف المستلم:</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>            
-                    <div style="float:right; width:30%">
-                        <div style="border-style: solid;">
-                            <p style="font-size:18pt;font-weight:bold;text-align:center;padding:0;margin:0;">Personal Details<br/>البيانات الشخصية</p>
-                        </div>
-                        <div>
-                            <table style="width:100%">
-                                <tr>
-                                    <td bgcolor="#dbfffd" style="width:33%">Name of employee :</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">اسم الموظف : </td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#dbfffd" style="width:33%">Employee No.:</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">الرقم الوظيفي:</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#dbfffd" style="width:33%">Job Title:</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;"> المنصب الوظيفي:</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#dbfffd" style="width:33%">Work Place:</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">مقر العمل</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#dbfffd" style="width:33%">Unit</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">الوحدة:</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#dbfffd" style="width:33%">Department</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">الادارة:</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#dbfffd" style="width:33%">Division</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">القسم:</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#dbfffd" style="width:33%">Work Phone No.</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">هاتف العمل:</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#dbfffd" style="width:33%">Mobile Phone No.:</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">الهاتف الجوال:</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#dbfffd" style="width:33%">Email</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">البريد الالكتروني:</td>
-                                </tr>                                 
-                            </table>
-                        </div>
-                        <div style="height:10%"/>
-                        <div style="border-style: solid;">
-                            <p style="font-size:18pt;font-weight:bold;text-align:center;padding:0;margin:0;">Car Condition when received<br/>حالة السيارة عند الاستلام</p>
-                        </div>
-                        <div style="height:2%"/>
-                        <div>
-                            <table style="width:384px">
-                                <tr>
-                                    <td style="height:96px;width:96px;border:solid #8ae342;border-radius:64px;text-align:center;">Not Clean<br/>غير نظيفة : </td>
-                                    <td style="height:96px;width:96px;border:solid #8ae342;border-radius:64px;text-align:center;">Clean<br/> نظيفة : </td>
-                                    <td style="height:96px;width:96px;border:solid #8ae342;border-radius:64px;text-align:center;">Scratched<br/> خدوش : </td>
-                                    <td style="height:96px;width:96px;border:solid #8ae342;border-radius:64px;text-align:center;">Excellent<br/> ممتازة: </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div style="height:10%"/>
-                        <div>
-                            <table style="width:100%">
-                                <tr>
-                                    <td bgcolor="#dbfffd" >Receiver Name:</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">اسم المستلم:</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#dbfffd" >Receiver signature:</td>
-                                    <td bgcolor="#dbfffd" style="direction:rtl;text-align:right;">توقيع المستلم:</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>      
-                </div>
+                </t>
             </t>
         </t>
     </template>
+
+
+
 
 </odoo>
