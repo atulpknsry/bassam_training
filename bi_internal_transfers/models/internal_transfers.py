@@ -13,7 +13,7 @@ class InternalTransfers(models.Model):
         ('assigned','Ready'),
         ('done','Done'),
     ], string='Status', default="draft")
-    scheduled_date = fields.Datetime(string='Scheduled Date')
+    scheduled_date = fields.Datetime(string='Scheduled Date', default=fields.datetime.now)
     location_id = fields.Many2one('stock.location', string='Source Location')
     location_dest_id = fields.Many2one('stock.location', string='Destination Location')
     move_lines = fields.One2many('stock.move', 'picking_id', string='Stock Moves')
@@ -41,7 +41,7 @@ class InternalTransfers(models.Model):
                 'location_dest_id':location_transit.id,
                 'picking_type_id':rec.picking_type_id.id,
             }
-            rec.picking_id = picking_obj.create(picking_vals)
+            rec.picking_id = picking_obj.sudo().create(picking_vals)
             rec.write({'name':rec.picking_id.name})
             for line in rec.product_line_ids:
                 move_vals = {
@@ -57,7 +57,7 @@ class InternalTransfers(models.Model):
                     'picking_type_id':rec.picking_type_id.id,
                     'product_uom':(self.env['uom.uom'].search([('name','=','Units')]).id),
                 }
-                rec.move_id = move_obj.create(move_vals)
+                rec.move_id = move_obj.sudo().create(move_vals)
                 move_line_vals = {
                     'picking_id':rec.picking_id.id,
                     'move_id':rec.move_id.id,
@@ -72,11 +72,12 @@ class InternalTransfers(models.Model):
                 }
                 move_line_obj = self.env['stock.move.line']
                 self.move_line_id = move_line_obj.create(move_line_vals)
-            rec.picking_id.action_assign()
-            self.env['stock.immediate.transfer'].create({'pick_ids': [(4, rec.picking_id.id)]}).process()
-            for line in rec.product_line_ids:
-                self.env['stock.quant'].search([('product_id','=',line.product_id.id),('location_id','=',location_transit.id)])\
-                    .write({'reserved_quantity':line.product_uom_qty})
+            rec.picking_id.sudo().action_assign()
+            self.env['stock.immediate.transfer'].sudo().create({'pick_ids': [(4, rec.picking_id.id)]}).process()
+            quant = self.env['stock.quant'].search([])
+            for rec in quant:
+                qty = rec.quantity
+                rec.sudo().write({'reserved_quantity':qty})
 
         self.state = 'assigned'
             
