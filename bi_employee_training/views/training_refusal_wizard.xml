@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Employee Training Refusal wizard    -->
+        <record id="employee_training_refusal_wizard_view" model="ir.ui.view">
+        <field name="name">Employee Training Refusal</field>
+        <field name="model">bi.training.refuse.wizard</field>
+        <field name="arch" type="xml">
+            <form> 
+                <sheet>
+                  <group>
+                    <field name="refusal_reason" />
+                  </group>
+                </sheet>
+                <footer>
+                    <button name="action_confirm" type="object" string="Confirm" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>    
+        </record>
+    
+        <record id='employee_training_refusal_wizard_action' model='ir.actions.act_window'>
+            <field name="name">Employee Training Refusal</field>
+            <field name="res_model">bi.training.refuse.wizard</field>
+            <field name="view_mode">form</field>
+        </record>
+    <!-- Employee Training  wizard Ends -->
+</odoo>

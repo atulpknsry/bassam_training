@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bi_employee_training,bi.employee.training,model_bi_employee_training,base.group_user,1,1,1,1
+access_bi_employee_training_line,bi.employee.training.line,model_bi_employee_training_line,base.group_user,1,1,1,0

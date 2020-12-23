@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <!-- Employee Training Form -->
+    <record id="employee_training_form_view" model="ir.ui.view">
+        <field name="name">Employee training</field>
+        <field name="model">bi.employee.training</field>
+        <field name="arch" type="xml">
+            <form> 
+                <header>
+                   <button name="action_request"
+                                string="Request"
+                                type="object"
+                                states="draft"
+                                groups="base.group_user"
+                                class="btn-primary"/>
+                    <button name="action_approve"
+                                string="Approve Request"
+                                type="object"
+                                states="requested"
+                                groups="hr.group_hr_manager"
+                                class="btn-primary"/>
+                    <button name="action_assign_employee"
+                                string="Assign Employee"
+                                type="object"
+                                states="approve"
+                                groups="hr.group_hr_manager"
+                                class="btn-primary"/>
+                    <button name="action_refused"
+                                string="Cancel"
+                                type="object"
+                                states="draft,requested"
+                                groups="hr.group_hr_manager"
+                                class="btn-primary"/>
+                    <field name="state" widget="statusbar"
+                               statusbar_visible="draft,requested,approve,assign employee"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group> 
+                            <field name="employee_id" attrs="{'readonly': [('state','in', ('approve','assign employee','refuse'))]}"/>
+                            <field name="product_id" attrs="{'readonly': [('state','in', ('approve','assign employee','refuse'))]}"/>
+                        </group>
+                        <group>
+                            <field name="name" attrs="{'readonly': [('state','in', ('approve','assign employee','refuse'))]}"/>
+                            <field name="refusal_reason" attrs="{'invisible': [('state','!=', 'refuse')]}"/>
+                        </group>
+                    </group>
+                    <notebook attrs="{'invisible': [('state','!=', 'assign employee')]}">
+                         <page  string="Training Deatils">
+                            <field name= "training_ids">
+                                <tree editable="bottom">
+                                  <field name="partner_id" />
+                                  <field name="date" />
+                                  <field name="time" />
+                                </tree>
+						    </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>    
+    </record>
+
+    <record id="employee_training_view_tree" model="ir.ui.view">
+        <field name="name">Employee Training</field>
+        <field name="model">bi.employee.training</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Training">
+                <field name="employee_id" />
+                <field name="product_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id='employee_training_action' model='ir.actions.act_window'>
+        <field name="name">Employee Training</field>
+        <field name="res_model">bi.employee.training</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face"> 
+                Create a new record
+            </p>
+        </field>
+    </record>
+
+    <record id="employee_training_action_assigned_trainees" model="ir.actions.server">
+        <field name="name">Assigned Trainees</field>
+        <field name="model_id" ref="model_bi_employee_training"/>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="code">action = model.return_assigned_trainees()</field>
+    </record>
+
+    
+    
+    <menuitem id="employee_training_main_menu" name="Employee Training" web_icon="bi_employee_training,static/img/employee_training.png"/>
+    <menuitem id="employee_training_sub_menu" action="employee_training_action" name="Employee Training" parent="employee_training_main_menu"/>
+    <menuitem id="employee_training_assigned_sub_menu" action="employee_training_action_assigned_trainees" name="Assigned Trainees" parent="employee_training_main_menu"/>
+    <!-- Employee Training Form Ends -->
+
+</odoo>
