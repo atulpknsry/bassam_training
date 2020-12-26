@@ -27,6 +27,9 @@
         # 'security/ir.model.access.csv',
         'reports/report_car_request_form.xml',
     ],
+    'images':[
+        'static/src/img/car.png',
+    ]
 
     # only loaded in demonstration mode
     # 'demo': [

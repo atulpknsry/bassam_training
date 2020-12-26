@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_template_bi_query">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <table>
+                        <tr>
+                            <td>Quotation Number</td>
+                            <td>Create Date</td>
+                            <td>Customer</td>
+                            <td>Salesperson</td>
+                            <td>Company</td>
+                            <td>Total</td>
+                        </tr>
+                        <t t-foreach="docs" t-as="o">
+                            <tr>
+                                <td><t t-esc="o['name']"/></td>
+                                <td><t t-esc="o['create_date']"/></td>
+                                <td><t t-esc="o['customer']"/></td>
+                                <td><t t-esc="o['salesperson']"/></td>
+                                <td><t t-esc="o['company']"/></td>
+                                <td><t t-esc="o['total']"/></td>
+                            </tr>
+                        </t>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>
