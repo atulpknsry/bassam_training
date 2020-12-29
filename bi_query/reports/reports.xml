@@ -2,12 +2,12 @@
 <odoo>
 
     <report
-        id="action_report_bi_query"
+        id="action_report"
         model="sale.order"
         string="Query Report"
         report_type="qweb-pdf"
-        name="bi_query.report_template_bi_query"
-        file="bi_query.report_template_bi_query"
+        name="bi_query.report_template"
+        file="bi_query.report_template"
     />
 
 </odoo>

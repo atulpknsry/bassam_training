@@ -20,11 +20,10 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
+        'wizards/bi_query_wizard.xml',
         'reports/reports.xml',
-    ],
-    'images': [
-        'static/description/icon.png',
+        'reports/report_template.xml',
+        'reports/report_layout.xml',
+        
     ],
 }

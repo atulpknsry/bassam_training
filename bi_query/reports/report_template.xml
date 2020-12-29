@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <template id="report_template_bi_query">
+    <template id="report_template">
         <t t-call="web.html_container">
-            <t t-call="web.external_layout">
+            <t t-call="bi_query.report_layout_template">
                 <div class="page">
-                    <table>
-                        <tr>
+                    <table width="100%">
+                        <tr style="font-weight:bold">
                             <td>Quotation Number</td>
-                            <td>Create Date</td>
+                            <!-- <td>Create Date</td> -->
                             <td>Customer</td>
                             <td>Salesperson</td>
                             <td>Company</td>
                             <td>Total</td>
                         </tr>
-                        <t t-foreach="docs" t-as="o">
+                        <t t-foreach="values" t-as="o">
                             <tr>
-                                <td><t t-esc="o['name']"/></td>
-                                <td><t t-esc="o['create_date']"/></td>
+                                <td><t t-esc="o['quotation']"/></td>
                                 <td><t t-esc="o['customer']"/></td>
                                 <td><t t-esc="o['salesperson']"/></td>
                                 <td><t t-esc="o['company']"/></td>
