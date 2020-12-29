@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bi_email,bi_email,model_bi_email,base.group_user,1,1,1,1
+access_no_template_mail,no_template_mail,model_no_template_mail,base.group_user,1,1,1,1
