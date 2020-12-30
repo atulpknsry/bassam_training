@@ -1,18 +1,20 @@
 <odoo>
-  <data noupdate="1">
+  <data>
     
     <!-- Email Template -->
     <record id="email_template" model="mail.template">
       <field name="name">Email Template</field>
       <field name="model_id" ref="model_bi_email" />
-      <field name="email_from">admin@yourcompany.example.com</field>
-      <field name="email_to">gemini.furniture39@example.com</field>
+      <field name="email_from">${(object.sender.email)}</field>
+      <field name="email_to">${(object.receiver.email)}</field>
       <field name="subject">Test Email</field>
+      <field name="report_template" ref="bi_car_request_form.action_report_car_request_form"/>
       <field name="body_html"><![CDATA[
-        <p>Hi</p>
+        <p>Hi ${(object.receiver.name)}</p>
         <br/>
         <p>This is a TEST mail.</p>
         <br/>
+        <p>Regards<br/>${(object.sender.name)}</p>
         ]]>
       </field>
     </record>
@@ -27,9 +29,10 @@
             <button string="Send Email" name="send_email" type="object"/>
           </header>
           <sheet>
-            <field name="name" readonly="1"/>
             <group>
-              <field name="partner_id" />
+              <field name="sender" />
+              <field name="receiver" />
+              <field name="file" />
             </group>
           </sheet>
           <!-- <div class="oe_chatter">
@@ -47,7 +50,8 @@
       <field name="arch" type="xml">
         <tree string="">
           <field name="name" />
-          <field name="partner_id" />
+          <field name="sender" />
+          <field name="receiver" />
         </tree>
       </field>
     </record>

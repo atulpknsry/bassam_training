@@ -6,10 +6,20 @@ class BiEmail(models.Model):
     _name = 'bi.email'
        
     name = fields.Char()
-    partner_id = fields.Many2one('res.partner','Customer')
+    sender = fields.Many2one('res.users','Sender', default=lambda self: self.env.user, readonly=True)
+    receiver = fields.Many2one('res.partner','Customer')
+    file = fields.Binary(string='File')
 
     def send_email(self):
         mail_template = self.env.ref('bi_email.email_template')
+        attachment = {
+            'name':'Attachment',
+            'datas':self.file,
+            'res_model':'bi.email',
+            'type':'binary',
+        }
+        attach_id = self.env['ir.attachment'].create(attachment)
+        mail_template.attachment_ids = [(6,0,[attach_id.id])]
         mail_template.send_mail(self.id,force_send=True)
 
 class NoTemplateMail(models.Model):
