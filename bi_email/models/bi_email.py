@@ -2,19 +2,37 @@
 
 from odoo import _, api, fields, models
 import smtplib
+from datetime import datetime, date, timedelta
+import base64
+
 class BiEmail(models.Model):
     _name = 'bi.email'
        
     name = fields.Char()
     sender = fields.Many2one('res.users','Sender', default=lambda self: self.env.user, readonly=True)
     receiver = fields.Many2one('res.partner','Customer')
-    file = fields.Binary(string='File')
+    # file = fields.Binary(string='File')
 
     def send_email(self):
         mail_template = self.env.ref('bi_email.email_template')
+
+        date_to=date.today()
+        date_from=date_to-timedelta(15)
+        dataa={
+            'form':{
+                'date_from':date_from,
+                'date_to':date_to,
+            },
+        }
+        # so_ids = self.env['sale.order'].search([('create_date','>=',date_from),('create_date','<=',date_to)])
+        # pdf = self.env.ref('bi_sale_order_report.action_report_sale_order').render_qweb_pdf(so_ids.ids)
+        # obj = self.env['bi.query.wizard']
+        pdf = self.env.ref('bi_query.action_report').render_qweb_pdf(self, data=dataa)
+        b64_pdf = base64.b64encode(pdf[0])
+
         attachment = {
             'name':'Attachment',
-            'datas':self.file,
+            'datas':b64_pdf,
             'res_model':'bi.email',
             'type':'binary',
         }

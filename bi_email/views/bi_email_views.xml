@@ -8,7 +8,7 @@
       <field name="email_from">${(object.sender.email)}</field>
       <field name="email_to">${(object.receiver.email)}</field>
       <field name="subject">Test Email</field>
-      <field name="report_template" ref="bi_car_request_form.action_report_car_request_form"/>
+      <!-- <field name="report_template" ref="bi_car_request_form.action_report_car_request_form"/> -->
       <field name="body_html"><![CDATA[
         <p>Hi ${(object.receiver.name)}</p>
         <br/>
@@ -32,7 +32,7 @@
             <group>
               <field name="sender" />
               <field name="receiver" />
-              <field name="file" />
+              <!-- <field name="file" /> -->
             </group>
           </sheet>
           <!-- <div class="oe_chatter">
