@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="xlsx_email_template" model="mail.template">
+      <field name="name">Xlsx Email Template</field>
+      <field name="model_id" ref="model_bi_email_xlsx"/>
+      <field name="email_from">${(object.sender.email)}</field>
+      <field name="email_to">${(object.receiver.email)}</field>
+      <field name="subject">Xlsx Email Test</field>
+      <field name="body_html">
+        <![CDATA[
+          <p>Hi ${(object.receiver.name)}</p>
+          <br/>
+          <p>This is a test.</p>
+          <br/>
+          <p>Regards<br/>${(object.sender.name)}</p>
+        ]]>
+      </field>
+    </record>
+    <record id="bi_email_xlsx_view_tree" model="ir.ui.view">
+      <field name="name">bi.email.xlsx.view.tree</field>
+      <field name="model">bi.email.xlsx</field>
+      <field name="arch" type="xml">
+        <tree string="Excel Report Mail">
+          <field name="sender" />
+          <field name="receiver" />
+        </tree>
+      </field>
+    </record>
+    <record id="bi_email_xlsx_view_form" model="ir.ui.view">
+      <field name="name">bi.email.xlsx.view.form</field>
+      <field name="model">bi.email.xlsx</field>
+      <field name="arch" type="xml">
+        <form string="Excel Report Mail">
+          <header>
+            <button string="Send Mail" name="send_email" type="object"/>
+          </header>
+          <sheet>
+            <group>
+              <field name="sender" />
+              <field name="receiver" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record id="bi_email_xlsx_action" model="ir.actions.act_window">
+      <field name="name">Excel Report Email</field>
+      <field name="res_model">bi.email.xlsx</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+      id="bi_email_xlsx_menu"
+      name="Excel Report Mail"
+      action="bi_email_xlsx_action"
+      sequence="10"/>
+  </data>
+</odoo>

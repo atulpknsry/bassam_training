@@ -23,7 +23,7 @@
         </record>
 
         <record id="excel_report_wizard_action" model="ir.actions.act_window">
-            <field name="name">Excel report wizard</field>
+            <field name="name">inv Excel report wizard</field>
             <field name="res_model">excel.report.wizard</field>
             <field name="view_mode">form</field>
             <field name="target">new</field>
