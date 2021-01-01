@@ -1,0 +1,50 @@
+<odoo>
+  <data>
+    <record id="multicompany_demo_view_tree" model="ir.ui.view">
+      <field name="name">multicompany.demo.view.tree</field>
+      <field name="model">multicompany.demo</field>
+      <field name="arch" type="xml">
+        <tree string="">
+          <field name="id" />
+          <field name="partner_id" />
+          <field name="date_order" />
+        </tree>
+      </field>
+    </record>
+    <record id="multicompany_demo_view_form" model="ir.ui.view">
+      <field name="name">multicompany.demo.view.form</field>
+      <field name="model">multicompany.demo</field>
+      <field name="arch" type="xml">
+        <form string="">
+          <header>
+            <button string="Make Sale Order" name="make_sale_order" type="object"/>
+          </header>
+          <sheet>
+            <group>
+              <field name="partner_id" />
+              <field name="date_order" />
+              <field name="order_line">
+                <tree editable="bottom">
+                  <field name="product_id" />
+                  <field name="name" />
+                  <field name="product_uom_qty" />
+                  <field name="price_unit" />
+                </tree>
+              </field>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record id="multicompany_demo_action" model="ir.actions.act_window">
+      <field name="name">multicompany.demo.action</field>
+      <field name="res_model">multicompany.demo</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+      id="multicompany_demo_menu"
+      name="MultiCompany Demo"
+      action="multicompany_demo_action"
+      sequence="10"/>
+  </data>
+</odoo>
