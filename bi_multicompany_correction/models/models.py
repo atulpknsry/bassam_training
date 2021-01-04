@@ -9,7 +9,7 @@ class BiMulticompanyCorrection(models.Model):
 
     def action_confirm(self):
         for rec in self.order_line:
-            quant_id = self.env['stock.quant'].search([('product_id','=',rec.product_id.id),('location_id','=',self.env['stock.location'].search([('complete_name','=','WH/Stock')]).id)])
+            quant_id = self.env['stock.quant'].search([('product_id','=',rec.product_id.id),('location_id','=',self.env['stock.location'].search([('complete_name','=','Class/Stock')]).id)])
             available_qty = self.env['stock.quant'].browse(quant_id.id).quantity
             if available_qty < rec.product_uom_qty :
                 po_lines = []
@@ -22,7 +22,7 @@ class BiMulticompanyCorrection(models.Model):
                 }
                 po_lines.append((0,0,po_line))
                 po_vals = {
-                    'partner_id': self.env['res.partner'].search([('email','=','ceo@anothercompany')]).company_id.id,
+                    'partner_id': self.env['res.partner'].search([('email','=','info@helix.com')]).id,
                     # 'company_id': self.env['res.company'].search([('email','=','info@mycompany.com')]).id,
                     'date_planned' : self.date_order + timedelta(10),
                     'order_line': po_lines,
@@ -38,9 +38,9 @@ class BiMulticompanyCorrection(models.Model):
                 }
                 so2_lines.append((0,0,so2_line))
                 so2_vals = {
-                    'partner_id': self.env['res.partner'].search([('email','=','ceo@mycompany')]).company_id.id,
-                    'company_id': self.env['res.company'].search([('email','=','info@anothercompany.com')]).id,
-                    'warehouse_id': self.env['stock.warehouse'].search([('code','=','Anoth')]).id,
+                    'partner_id': self.env['res.partner'].search([('email','=','info@classic.com')]).id,
+                    'company_id': self.env['res.company'].search([('email','=','info@helix.com')]).id,
+                    'warehouse_id': self.env['stock.warehouse'].search([('code','=','Helix')]).id,
                     'order_line': so2_lines,
                 }
                 so2_id = self.env['sale.order'].create(so2_vals)
