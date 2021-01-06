@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <data>
+    <record id="bi_view_sql_view_tree" model="ir.ui.view">
+      <field name="name">bi.view.sql.view.tree</field>
+      <field name="model">bi.view.sql</field>
+      <field name="arch" type="xml">
+        <tree string="">
+          <field name="quotation" />
+          <field name="date" />
+          <field name="customer" />
+          <field name="salesperson" />
+          <field name="company" />
+          <field name="picking" />
+          <field name="total" />
+          <field name="residual" />
+        </tree>
+      </field>
+    </record>
+    <record id="bi_view_sql_action" model="ir.actions.act_window">
+      <field name="name">BI View SQL</field>
+      <field name="res_model">bi.view.sql</field>
+      <field name="view_mode">tree</field>
+    </record>
+    <menuitem
+      id="bi_view_sql_menu"
+      name="BI View SQL"
+      action="bi_view_sql_action"
+      sequence="10"/>
+  </data>
+
+</odoo>

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bi_view_sql,bi_view_sql,model_bi_view_sql,base.group_user,1,1,1,1
