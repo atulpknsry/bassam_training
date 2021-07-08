@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_template_partner_statement">
+        <t t-call="web.html_container">
+            <t t-call="bi_partner_statement.report_layout_template">
+                <div class="page">
+                    <h3>Customer : <t t-esc="partner_name"/></h3>
+                    <h4>Statement from <t t-esc="date_from"/> to <t t-esc="date_to"/></h4>
+                    <table style="width:100%; border:1px solid black; border-collapse: collapse;">
+                        <tr>
+                            <th style="border:1px solid black; border-collapse: collapse;">Reference</th>
+                            <th style="border:1px solid black; border-collapse: collapse;">Date</th>
+                            <th style="border:1px solid black; border-collapse: collapse;">Name</th>
+                            <th style="border:1px solid black; border-collapse: collapse;">Type</th>
+                            <th style="border:1px solid black; border-collapse: collapse;">Debit</th>
+                            <th style="border:1px solid black; border-collapse: collapse;">Credit</th>
+                            <th style="border:1px solid black; border-collapse: collapse;">Balance</th>
+                        </tr>
+                        <tr>
+                            <td colspan="6" style="text-align:right; border:1px solid black; border-collapse: collapse;">Initial Balance</td>
+                            <td style="text-align:right; border:1px solid black; border-collapse: collapse;"><t t-esc="initial_balance"/></td>
+                        </tr>
+                        <t t-foreach="values" t-as="doc">
+                            <tr>
+                                <td style="border:1px solid black; border-collapse: collapse;"><t t-esc="doc['ref']"/></td>
+                                <td style="text-align:center; border:1px solid black; border-collapse: collapse;"><t t-esc="doc['date']"/></td>
+                                <td style="text-align:center; border:1px solid black; border-collapse: collapse;"><t t-esc="doc['name']"/></td>
+                                <td style="text-align:center; border:1px solid black; border-collapse: collapse;"><t t-esc="doc['journal']"/></td>
+                                <td style="text-align:right; border:1px solid black; border-collapse: collapse;"><t t-esc="doc['debit']"/></td>
+                                <td style="text-align:right; border:1px solid black; border-collapse: collapse;"><t t-esc="doc['credit']"/></td>
+                                <td style="text-align:right; border:1px solid black; border-collapse: collapse;"><t t-esc="doc['balance']"/></td>
+                            </tr>
+                        </t>
+                        <tr>
+                            <td colspan="6" style="text-align:right; border:1px solid black; border-collapse: collapse;">Final Balance</td>
+                            <td style="text-align:right; border:1px solid black; border-collapse: collapse;"><t t-esc="final_balance"/></td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report
+        id="action_report_bi_partner_statement"
+        model="account.move"
+        string="Partner Statement"
+        report_type="qweb-pdf"
+        name="bi_partner_statement.report_template_partner_statement"
+        file="bi_partner_statement.report_template_partner_statement"
+        paperformat="bi_partner_statement.paperformat_statement"
+    />
+
+</odoo>

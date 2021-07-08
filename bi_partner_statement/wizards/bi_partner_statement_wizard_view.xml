@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="bi_partner_statement_view_form" model="ir.ui.view">
+        <field name="name">bi.partner.statement.view.form</field>
+        <field name="model">bi.partner.statement</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="partner_id" />                
+                    </group>
+                    <group>
+                        <field name="date_from" />
+                        <field name="date_to" />
+                    </group>
+                    <footer>
+                        <button string="Submit" name="get_statement" type="object" class="oe_highlight"/>
+                        <button string="Cancel" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="bi_partner_statement_action" model="ir.actions.act_window">
+        <field name="name">Partner Statement</field>
+        <field name="res_model">bi.partner.statement</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem
+        id="bi_partner_statement_menu"
+        name="Partner Statement"
+        action="bi_partner_statement_action"
+        parent="account.menu_finance_reports"
+        sequence="10"/>
+
+</odoo>

@@ -1,0 +1,62 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->                            
+<templates xml:space="preserve">    
+    <div t-name="hello_world.ClientAction">
+      <div class="container" style="margin:40px 100px">
+        <div class='row'>
+          <div class='col-6'>
+            <div style='padding:25px;'>
+              <h1 class="hello-world">Hello Odoo</h1>        
+              <t t-esc="widget.info"></t>
+            </div>
+          </div>
+          <div class='col-6' align='right'>
+            <img style='padding:25px;' src="tutorial_add_javascript/static/src/img/cube.png" alt="Image of a rubix cube." height="100px"/>
+          </div>
+        </div>
+        <div class='row' style='padding:10px 25px;'>
+          <div class='col-5'>
+            Name
+          </div>
+          <div class='col-1'>
+            :
+          </div>
+          <div class='col-2'>
+            <input type='text'/>
+          </div>
+        </div>
+        <div class='row' style='padding:10px 25px;'>
+          <div class='col-5'>
+            Age
+          </div>
+          <div class='col-1'>
+            :
+          </div>
+          <div class='col-2'>
+            <input type='number'/>
+          </div>
+        </div>
+        <div class='row' style='padding:10px 25px;'>
+          <div class='col-5'>
+            Email
+          </div>
+          <div class='col-1'>
+            :
+          </div>
+          <div class='col-2'>
+            <input type='email'/>
+          </div>
+        </div>
+        <div class='row' style='padding:10px 25px;'>
+          <div class='col-5'>
+            Date of Birth
+          </div>
+          <div class='col-1'>
+            :
+          </div>
+          <div class='col-2'>
+            <input type='date'/>
+          </div>
+        </div>
+      </div>
+    </div>
+</templates>
